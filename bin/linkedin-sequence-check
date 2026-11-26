@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'json'
+require_relative '../lib/linkedin_sequence_check'
+
+limit = nil
+args = ARGV.dup
+if (i = args.index('--note-limit'))
+  limit = Integer(args[i + 1])
+  args.slice!(i, 2)
+end
+if args.empty?
+  warn 'usage: linkedin-sequence-check [--note-limit N] sequence.json [more.json ...]'
+  exit 2
+end
+bad = 0
+args.each do |path|
+  seq = JSON.parse(File.read(path))
+  issues = LinkedinSequenceCheck.check(seq, note_limit: limit)
+  puts "#{path}: #{issues.empty? ? 'ok' : "#{issues.size} issue(s)"}"
+  issues.each { |i| puts "  #{i.branch}: #{i.message}" }
+  bad += issues.size
+end
+exit(bad.zero? ? 0 : 1)

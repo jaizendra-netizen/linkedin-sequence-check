@@ -1,0 +1,28 @@
+# linkedin-sequence-check
+
+Checks one LinkedIn outreach sequence (JSON) against the rules of the OneGTMLab LinkedIn outreach playbook before it goes
+to a sender account. The sequence has five branches: a **connection note**, a message **on acceptance**, a message for
+**existing connections**, an **InMail** for people who do not accept, and a short **generic fallback**. Ruby 2.7+,
+standard library only.
+
+```bash
+ruby bin/linkedin-sequence-check examples/sequence.json
+ruby bin/linkedin-sequence-check --note-limit 200 my_sequence.json
+```
+
+What it flags: a missing branch, a message over about 70 words, stray braces or unresolved variables, em dashes, a link in
+the connection note, a message to an existing connection that opens by remarking on the connection, a message that introduces
+the sender by name, and a hook that is a quote or a bare reshare rather than something the person wrote (hook posts are
+labelled `original`, `quote` or `reshare`). The character limit for the note is not assumed: pass `--note-limit` with your own
+figure. Exit code 1 when anything is flagged. `examples/sequence.json` is invented sample text.
+
+## Test
+
+```bash
+ruby test/test_check.rb
+```
+
+## Source of the rules
+
+[LinkedIn Outreach Playbook](https://www.onegtmlab.dev/growth-playbooks/linkedin-outreach), steps "Label every post",
+"Write the five branches" and "Voice and sign as the sender". MIT licensed.

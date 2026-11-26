@@ -1,0 +1,9 @@
+{
+  "sender": "Sample Sender",
+  "connection_note": "Your note on the migration talk stayed with me. Would be glad to connect.",
+  "on_acceptance": "Thanks for accepting. You wrote about moving reporting out of spreadsheets. We have been working on the same problem for event lists and would be glad to compare notes.",
+  "existing_connection": "You wrote about moving reporting out of spreadsheets. We have been working on the same problem for event lists. Open to comparing notes?",
+  "inmail": "You wrote about moving reporting out of spreadsheets. We work on the same problem for event lists. If useful, I can share what we found.",
+  "generic_fallback": "We help teams turn event attendee lists into short, send-ready lists. Worth a conversation?",
+  "hook": { "text": "moving reporting out of spreadsheets", "label": "original" }
+}
