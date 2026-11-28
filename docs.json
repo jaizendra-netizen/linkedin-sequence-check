@@ -1,0 +1,10 @@
+{
+  "name": "linkedin-sequence-check",
+  "description": "Ruby CLI that checks a five-branch LinkedIn outreach sequence: missing branches, length, braces, links in the note, existing-connection openers and hook labels.",
+  "sidebar": [
+    {
+      "title": "Overview",
+      "href": "/"
+    }
+  ]
+}

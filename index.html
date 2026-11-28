@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>linkedin-sequence-check | OneGTMLab</title>
+<meta name="description" content="Ruby CLI that checks a five-branch LinkedIn outreach sequence: missing branches, length, braces, links in the note, existing-connection openers and hook labels.">
+<style>body{font:16px/1.6 system-ui,sans-serif;max-width:46rem;margin:2rem auto;padding:0 1rem;color:#1b1f23}pre{background:#f6f8fa;padding:1rem;overflow:auto}code{background:#f6f8fa;padding:.1em .3em}table{border-collapse:collapse}td,th{border:1px solid #d0d7de;padding:.3rem .6rem}</style>
+</head><body>
+<main>
+<h1 dir="auto">linkedin-sequence-check</h1>
+<p dir="auto">Checks one LinkedIn outreach sequence (JSON) against the rules of the OneGTMLab LinkedIn outreach playbook before it goes<br>
+to a sender account. The sequence has five branches: a <strong>connection note</strong>, a message <strong>on acceptance</strong>, a message for<br>
+<strong>existing connections</strong>, an <strong>InMail</strong> for people who do not accept, and a short <strong>generic fallback</strong>. Ruby 2.7+,<br>
+standard library only.</p>
+<div class="highlight highlight-source-shell" dir="auto"><pre class="notranslate">ruby bin/linkedin-sequence-check examples/sequence.json
+ruby bin/linkedin-sequence-check --note-limit 200 my_sequence.json</pre></div>
+<p dir="auto">What it flags: a missing branch, a message over about 70 words, stray braces or unresolved variables, em dashes, a link in<br>
+the connection note, a message to an existing connection that opens by remarking on the connection, a message that introduces<br>
+the sender by name, and a hook that is a quote or a bare reshare rather than something the person wrote (hook posts are<br>
+labelled <code class="notranslate">original</code>, <code class="notranslate">quote</code> or <code class="notranslate">reshare</code>). The character limit for the note is not assumed: pass <code class="notranslate">--note-limit</code> with your own<br>
+figure. Exit code 1 when anything is flagged. <code class="notranslate">examples/sequence.json</code> is invented sample text.</p>
+<h2 dir="auto">Test</h2>
+<div class="highlight highlight-source-shell" dir="auto"><pre class="notranslate">ruby test/test_check.rb</pre></div>
+<h2 dir="auto">Source of the rules</h2>
+<p dir="auto"><a href="https://www.onegtmlab.dev/growth-playbooks/linkedin-outreach">LinkedIn Outreach Playbook</a>, steps "Label every post",<br>
+"Write the five branches" and "Voice and sign as the sender". MIT licensed.</p>
+</main>
+<footer><p>Source: <a href="https://github.com/jaizendra-netizen/linkedin-sequence-check">github.com/jaizendra-netizen/linkedin-sequence-check</a>. Maintained by <a href="https://www.onegtmlab.dev">OneGTMLab</a>.</p></footer>
+</body></html>
